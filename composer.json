@@ -29,6 +29,5 @@
             "php vendor/bin/phpunit --coverage-text"
         ]
     },
-    "license": "MIT",
-    "minimum-stability": "stable"
+    "license": "MIT"
 }
