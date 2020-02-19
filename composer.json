@@ -21,7 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Puwnz\\GoogleMapsBundle\\": "./"
+            "Puwnz\\GoogleMapsBundle\\": "./src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Puwnz\\GoogleMapsBundle\\Tests\\": "./tests"
         }
     },
     "scripts": {
@@ -29,6 +34,5 @@
             "php vendor/bin/phpunit --coverage-text"
         ]
     },
-    "license": "MIT",
-    "minimum-stability": "stable"
+    "license": "MIT"
 }
