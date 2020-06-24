@@ -5,7 +5,7 @@ orbs:
 
 x-common: &x-common-php
   docker:
-    - image: puwnz/php-intl:7.3
+    - image: puwnz/php-intl:7.3-alpine
       environment:
         APP_ENV: test
   working_directory: /var/www/app
