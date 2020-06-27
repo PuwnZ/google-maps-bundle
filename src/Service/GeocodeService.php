@@ -2,26 +2,25 @@
 
 declare(strict_types=1);
 
-namespace Puwnz\GoogleMapsBundle;
+namespace Puwnz\GoogleMapsBundle\Service;
 
+use Puwnz\GoogleMapsBundle\Factory\GeocodeQueryBuilderFactory;
 use Puwnz\GoogleMapsLib\Geocode\DTO\GeocodeResult;
 use Puwnz\GoogleMapsLib\Geocode\Exception\GeocodeViolationsException;
 use Puwnz\GoogleMapsLib\Geocode\GeocodeParser;
-use Puwnz\GoogleMapsLib\Geocode\QueryBuilder\GeocodeQueryBuilder;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class GeocodeService
 {
     /** @var GeocodeParser */
     private $geocodeParser;
 
-    /** @var ValidatorInterface */
-    private $validator;
+    /** @var GeocodeQueryBuilderFactory */
+    private $geocodeQueryBuilderFactory;
 
-    public function __construct(GeocodeParser $geocodeParser, ValidatorInterface $validator)
+    public function __construct(GeocodeParser $geocodeParser, GeocodeQueryBuilderFactory $geocodeQueryBuilderFactory)
     {
         $this->geocodeParser = $geocodeParser;
-        $this->validator = $validator;
+        $this->geocodeQueryBuilderFactory = $geocodeQueryBuilderFactory;
     }
 
     /**
@@ -36,8 +35,8 @@ class GeocodeService
         array $bounds = []
     ): array
     {
-        $geocodeQueryBuilder = (new GeocodeQueryBuilder($this->validator))
-            ->setAddress($address);
+        $geocodeQueryBuilder = $this->geocodeQueryBuilderFactory->build();
+        $geocodeQueryBuilder->setAddress($address);
 
         if ($components !== []) {
             $geocodeQueryBuilder->setComponents($components);
@@ -48,7 +47,7 @@ class GeocodeService
         }
 
         if (!empty($region)) {
-            $geocodeQueryBuilder->setLanguage($region);
+            $geocodeQueryBuilder->setRegion($region);
         }
 
         if ($bounds !== []) {
