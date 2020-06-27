@@ -21,12 +21,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Puwnz\\GoogleMapsBundle\\": "./src"
+            "Puwnz\\GoogleMapsBundle\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Puwnz\\GoogleMapsBundle\\Tests\\": "./tests"
+            "Puwnz\\GoogleMapsBundle\\Tests\\": "tests/"
         }
     },
     "scripts": {
