@@ -10,5 +10,8 @@ services:
     bind:
       $googleApiKey: '%google_maps.api_key%'
 
+  Puwnz\GoogleMapsBundle\:
+    resource: '../../'
+
   Puwnz\GoogleMapsLib\:
     resource: '%kernel.root_dir%/../vendor/puwnz/google-maps-lib/src/'
