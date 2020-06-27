@@ -19,6 +19,6 @@ class GeocodeQueryBuilderFactory
 
     public function build() : GeocodeQueryBuilder
     {
-        return (new GeocodeQueryBuilder($this->validator));
+        return new GeocodeQueryBuilder($this->validator);
     }
 }

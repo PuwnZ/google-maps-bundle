@@ -25,6 +25,7 @@ class GeocodeService
 
     /**
      * @return GeocodeResult[]
+     *
      * @throws GeocodeViolationsException
      */
     public function call(
@@ -33,8 +34,7 @@ class GeocodeService
         ?string $language = null,
         ?string $region = null,
         array $bounds = []
-    ): array
-    {
+    ) : array {
         $geocodeQueryBuilder = $this->geocodeQueryBuilderFactory->build();
         $geocodeQueryBuilder->setAddress($address);
 

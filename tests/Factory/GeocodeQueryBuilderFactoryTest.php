@@ -7,7 +7,6 @@ namespace Puwnz\GoogleMapsBundle\Tests\Factory;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Puwnz\GoogleMapsBundle\Factory\GeocodeQueryBuilderFactory;
-use Puwnz\GoogleMapsLib\Geocode\QueryBuilder\GeocodeQueryBuilder;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class GeocodeQueryBuilderFactoryTest extends TestCase
@@ -18,7 +17,7 @@ class GeocodeQueryBuilderFactoryTest extends TestCase
     /** @var GeocodeQueryBuilderFactory */
     private $service;
 
-    protected function setUp(): void
+    protected function setUp() : void
     {
         parent::setUp();
 

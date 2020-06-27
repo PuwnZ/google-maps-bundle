@@ -26,7 +26,7 @@ class GeocodeServiceTest extends TestCase
     /** @var GeocodeService */
     private $service;
 
-    protected function setUp(): void
+    protected function setUp() : void
     {
         parent::setUp();
 
@@ -40,19 +40,19 @@ class GeocodeServiceTest extends TestCase
     {
         $address = '10 rue de la Paix, Paris';
         $components = [
-            GeocodeComponentQueryType::COUNTRY => 'FR'
+            GeocodeComponentQueryType::COUNTRY => 'FR',
         ];
         $language = SupportedLanguage::FRENCH;
         $region = SupportedRegion::FR;
         $bounds = [
             'northeast' => [
                 'lat' => 0.0,
-                'lng' => 1.0
+                'lng' => 1.0,
             ],
             'southwest' => [
                 'lat' => -0.0,
-                'lng' => -1.0
-            ]
+                'lng' => -1.0,
+            ],
         ];
 
         $geocodeResults = [new GeocodeResult()];
