@@ -20,5 +20,18 @@ class GoogleMapsExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('google_maps', $config);
+        $this->setParameters($config, 'google_maps', $container);
+    }
+
+    private function setParameters(array $parameters, string $base, ContainerBuilder $container) : void
+    {
+        foreach ($parameters as $key => $value) {
+            $namespace = $base . '.' . $key;
+            $container->setParameter($namespace, $value);
+
+            if (\is_array($value)) {
+                $this->setParameters($value, $namespace, $container);
+            }
+        }
     }
 }
