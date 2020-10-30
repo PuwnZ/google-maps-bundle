@@ -23,7 +23,7 @@ class GoogleMapsExtension extends Extension
         $this->setParameters($config, 'google_maps', $container);
     }
 
-    private function setParameters(array $parameters, string $base, ContainerBuilder $container) : void
+    private function setParameters(array $parameters, string $base, ContainerBuilder $container): void
     {
         foreach ($parameters as $key => $value) {
             $namespace = $base . '.' . $key;
