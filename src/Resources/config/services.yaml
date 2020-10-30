@@ -9,9 +9,18 @@ services:
 
     bind:
       $googleApiKey: '%google_maps.api_key%'
+      $clients: !tagged_iterator google.client
+      $parsers: !tagged_iterator google.parser
 
   Puwnz\GoogleMapsBundle\:
     resource: '../../'
 
   Puwnz\GoogleMapsLib\:
-    resource: '%kernel.root_dir%/../vendor/puwnz/google-maps-lib/src/'
+    resource: '%kernel.project_dir%/vendor/puwnz/google-maps-lib/src/'
+
+  _instanceof:
+    Puwnz\GoogleMapsLib\Common\Client\ClientInterface:
+      tags: [ 'google.client' ]
+
+    Puwnz\GoogleMapsLib\Common\Parser\ParserInterface:
+      tags: [ 'google.parser' ]
