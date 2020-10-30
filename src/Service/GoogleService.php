@@ -5,36 +5,29 @@ declare(strict_types=1);
 namespace Puwnz\GoogleMapsBundle\Service;
 
 use Puwnz\GoogleMapsBundle\Factory\GeocodeQueryBuilderFactory;
-use Puwnz\GoogleMapsLib\Geocode\DTO\GeocodeResult;
-use Puwnz\GoogleMapsLib\Geocode\Exception\GeocodeViolationsException;
-use Puwnz\GoogleMapsLib\Geocode\GeocodeParser;
+use Puwnz\GoogleMapsLib\GoogleService as GoogleServiceLib;
 
-class GeocodeService
+class GoogleService
 {
-    /** @var GeocodeParser */
-    private $geocodeParser;
+    /** @var GoogleServiceLib */
+    private $googleService;
 
     /** @var GeocodeQueryBuilderFactory */
     private $geocodeQueryBuilderFactory;
 
-    public function __construct(GeocodeParser $geocodeParser, GeocodeQueryBuilderFactory $geocodeQueryBuilderFactory)
+    public function __construct(GoogleServiceLib $googleService, GeocodeQueryBuilderFactory $geocodeQueryBuilderFactory)
     {
-        $this->geocodeParser = $geocodeParser;
+        $this->googleService = $googleService;
         $this->geocodeQueryBuilderFactory = $geocodeQueryBuilderFactory;
     }
 
-    /**
-     * @return GeocodeResult[]
-     *
-     * @throws GeocodeViolationsException
-     */
-    public function call(
+    public function geocode(
         string $address,
         array $components = [],
         ?string $language = null,
         ?string $region = null,
         array $bounds = []
-    ) : array {
+    ): array {
         $geocodeQueryBuilder = $this->geocodeQueryBuilderFactory->build();
         $geocodeQueryBuilder->setAddress($address);
 
@@ -54,6 +47,6 @@ class GeocodeService
             $geocodeQueryBuilder->setBounds($bounds);
         }
 
-        return $this->geocodeParser->getGeocodeByBuilder($geocodeQueryBuilder);
+        return $this->googleService->apply($geocodeQueryBuilder);
     }
 }

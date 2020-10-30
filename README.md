@@ -46,16 +46,16 @@ To use this package on your symfony project, you can use than the next example :
 
 namespace App\Controller;
 
-use Puwnz\GoogleMapsBundle\Service\GeocodeService;
+use Puwnz\GoogleMapsBundle\Service\GoogleService;
 use Puwnz\GoogleMapsLib\Geocode\DTO\GeocodeResult;
 
 class FooService  {
 
-    /** @var GeocodeService */
-    private $geocodeService;
+    /** @var GoogleService */
+    private $googleService;
 
-    public function __construct(GeocodeService $geocodeService) {
-        $this->geocodeService = $geocodeService;
+    public function __construct(GoogleService $geocodeService) {
+        $this->googleService = $geocodeService;
     }
     
     /**
@@ -63,7 +63,7 @@ class FooService  {
     */
     public function getGeocodeResult(string $address) : array
     {
-        return $this->geocodeService->call($address);
+        return $this->googleService->geocode($address);
     }
 }
 ```

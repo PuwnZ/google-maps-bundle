@@ -26,7 +26,7 @@ class GeocodeServiceTest extends TestCase
     /** @var GeocodeService */
     private $service;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -36,7 +36,7 @@ class GeocodeServiceTest extends TestCase
         $this->service = new GeocodeService($this->geocodeParser, $this->geocodeQueryBuilderFactory);
     }
 
-    public function testCall() : void
+    public function testCall(): void
     {
         $address = '10 rue de la Paix, Paris';
         $components = [
@@ -59,36 +59,36 @@ class GeocodeServiceTest extends TestCase
 
         $geocodeQueryBuilder = $this->createMock(GeocodeQueryBuilder::class);
 
-        $this->geocodeQueryBuilderFactory->expects($this->once())
+        $this->geocodeQueryBuilderFactory->expects(static::once())
             ->method('build')
             ->willReturn($geocodeQueryBuilder);
 
-        $geocodeQueryBuilder->expects($this->once())
+        $geocodeQueryBuilder->expects(static::once())
             ->method('setAddress')
             ->with($address)
             ->willReturn($geocodeQueryBuilder);
 
-        $geocodeQueryBuilder->expects($this->once())
+        $geocodeQueryBuilder->expects(static::once())
             ->method('setComponents')
             ->with($components)
             ->willReturn($geocodeQueryBuilder);
 
-        $geocodeQueryBuilder->expects($this->once())
+        $geocodeQueryBuilder->expects(static::once())
             ->method('setLanguage')
             ->with($language)
             ->willReturn($geocodeQueryBuilder);
 
-        $geocodeQueryBuilder->expects($this->once())
+        $geocodeQueryBuilder->expects(static::once())
             ->method('setRegion')
             ->with($region)
             ->willReturn($geocodeQueryBuilder);
 
-        $geocodeQueryBuilder->expects($this->once())
+        $geocodeQueryBuilder->expects(static::once())
             ->method('setBounds')
             ->with($bounds)
             ->willReturn($geocodeQueryBuilder);
 
-        $this->geocodeParser->expects($this->once())
+        $this->geocodeParser->expects(static::once())
             ->method('getGeocodeByBuilder')
             ->with($geocodeQueryBuilder)
             ->willReturn($geocodeResults);
