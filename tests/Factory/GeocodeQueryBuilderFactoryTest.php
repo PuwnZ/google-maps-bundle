@@ -17,7 +17,7 @@ class GeocodeQueryBuilderFactoryTest extends TestCase
     /** @var GeocodeQueryBuilderFactory */
     private $service;
 
-    protected function setUp() : void
+    protected function setUp(): void
     {
         parent::setUp();
 
@@ -25,7 +25,7 @@ class GeocodeQueryBuilderFactoryTest extends TestCase
         $this->service = new GeocodeQueryBuilderFactory($this->validator);
     }
 
-    public function testBuild() : void
+    public function testBuild(): void
     {
         $queryBuilder = $this->service->build();
         $queryBuilder2 = $this->service->build();

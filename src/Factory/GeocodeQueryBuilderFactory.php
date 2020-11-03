@@ -17,7 +17,7 @@ class GeocodeQueryBuilderFactory
         $this->validator = $validator;
     }
 
-    public function build() : GeocodeQueryBuilder
+    public function build(): GeocodeQueryBuilder
     {
         return new GeocodeQueryBuilder($this->validator);
     }
