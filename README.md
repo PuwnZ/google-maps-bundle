@@ -37,6 +37,36 @@ google_maps:
     api_key: '%env(GOOGLE_API_KEY)%'
 ```
 
+## Example
+
+To use this package on your symfony project, you can use than the next example :
+
+```php
+<?php
+
+namespace App\Controller;
+
+use Puwnz\GoogleMapsBundle\Service\GoogleService;
+use Puwnz\GoogleMapsLib\Geocode\DTO\GeocodeResult;
+
+class FooService  {
+
+    /** @var GoogleService */
+    private $googleService;
+
+    public function __construct(GoogleService $geocodeService) {
+        $this->googleService = $geocodeService;
+    }
+    
+    /**
+    * @return GeocodeResult[]
+    */
+    public function getGeocodeResult(string $address) : array
+    {
+        return $this->googleService->geocode($address);
+    }
+}
+```
 
 ## Testing
 
