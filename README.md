@@ -67,6 +67,18 @@ class FooService  {
     }
 }
 ```
+## Use custom cache pool
+
+You can use a specific cache pool for this lib. Just add in your cache framework configuration a new pool like this :
+
+```yaml
+# config/packages/cache.yaml
+framework:
+  cache:
+    pools:
+      google_maps:
+        adapter: 'cache.adapter.redis' # this example use redis
+```
 
 ## Testing
 
