@@ -7,15 +7,16 @@ namespace Puwnz\GoogleMapsBundle\Tests\Service;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Puwnz\GoogleMapsBundle\Factory\GeocodeQueryBuilderFactory;
-use Puwnz\GoogleMapsBundle\Service\GeocodeService;
+use Puwnz\GoogleMapsBundle\Service\GoogleService;
 use Puwnz\GoogleMapsLib\Constants\SupportedLanguage;
 use Puwnz\GoogleMapsLib\Constants\SupportedRegion;
 use Puwnz\GoogleMapsLib\Geocode\DTO\GeocodeResult;
-use Puwnz\GoogleMapsLib\Geocode\GeocodeParser;
+use Puwnz\GoogleMapsLib\Geocode\Parser\GeocodeParser;
 use Puwnz\GoogleMapsLib\Geocode\QueryBuilder\GeocodeQueryBuilder;
 use Puwnz\GoogleMapsLib\Geocode\Type\GeocodeComponentQueryType;
+use Puwnz\GoogleMapsLib\GoogleService as GoogleServiceLib;
 
-class GeocodeServiceTest extends TestCase
+class GoogleServiceTest extends TestCase
 {
     /** @var MockObject|GeocodeParser */
     private $geocodeParser;
@@ -23,17 +24,17 @@ class GeocodeServiceTest extends TestCase
     /** @var MockObject|GeocodeQueryBuilderFactory */
     private $geocodeQueryBuilderFactory;
 
-    /** @var GeocodeService */
+    /** @var GoogleService */
     private $service;
 
     protected function setUp(): void
     {
         parent::setUp();
 
-        $this->geocodeParser = $this->createMock(GeocodeParser::class);
+        $this->geocodeParser = $this->createMock(GoogleServiceLib::class);
         $this->geocodeQueryBuilderFactory = $this->createMock(GeocodeQueryBuilderFactory::class);
 
-        $this->service = new GeocodeService($this->geocodeParser, $this->geocodeQueryBuilderFactory);
+        $this->service = new GoogleService($this->geocodeParser, $this->geocodeQueryBuilderFactory);
     }
 
     public function testCall(): void
@@ -89,11 +90,11 @@ class GeocodeServiceTest extends TestCase
             ->willReturn($geocodeQueryBuilder);
 
         $this->geocodeParser->expects(static::once())
-            ->method('getGeocodeByBuilder')
+            ->method('apply')
             ->with($geocodeQueryBuilder)
             ->willReturn($geocodeResults);
 
-        $actual = $this->service->call($address, $components, $language, $region, $bounds);
+        $actual = $this->service->geocode($address, $components, $language, $region, $bounds);
 
         $expected = $geocodeResults;
 
