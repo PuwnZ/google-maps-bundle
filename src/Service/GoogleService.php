@@ -21,6 +21,15 @@ class GoogleService
         $this->geocodeQueryBuilderFactory = $geocodeQueryBuilderFactory;
     }
 
+    public function reverseGeocode(float $lat, float $lng): array
+    {
+        $geocodeQueryBuilder = $this->geocodeQueryBuilderFactory->build();
+
+        $geocodeQueryBuilder->setLatLng($lat, $lng);
+
+        return $this->googleService->apply($geocodeQueryBuilder);
+    }
+
     public function geocode(
         string $address,
         array $components = [],
