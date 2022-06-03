@@ -100,31 +100,4 @@ class GoogleServiceTest extends TestCase
 
         static::assertSame($expected, $actual);
     }
-
-    public function testReverseCall(): void
-    {
-        $geocodeResults = [new GeocodeResult()];
-
-        $geocodeQueryBuilder = $this->createMock(GeocodeQueryBuilder::class);
-
-        $this->geocodeQueryBuilderFactory->expects(static::once())
-            ->method('build')
-            ->willReturn($geocodeQueryBuilder);
-
-        $geocodeQueryBuilder->expects(static::once())
-            ->method('setLatLng')
-            ->with(0., 0.)
-            ->willReturn($geocodeQueryBuilder);
-
-        $this->geocodeParser->expects(static::once())
-            ->method('apply')
-            ->with($geocodeQueryBuilder)
-            ->willReturn($geocodeResults);
-
-        $actual = $this->service->reverseGeocode(0., 0.);
-
-        $expected = $geocodeResults;
-
-        static::assertSame($expected, $actual);
-    }
 }
