@@ -60,36 +60,36 @@ class GoogleServiceTest extends TestCase
 
         $geocodeQueryBuilder = $this->createMock(GeocodeQueryBuilder::class);
 
-        $this->geocodeQueryBuilderFactory->expects(static::once())
+        $this->geocodeQueryBuilderFactory->expects(self::once())
             ->method('build')
             ->willReturn($geocodeQueryBuilder);
 
-        $geocodeQueryBuilder->expects(static::once())
+        $geocodeQueryBuilder->expects(self::once())
             ->method('setAddress')
             ->with($address)
             ->willReturn($geocodeQueryBuilder);
 
-        $geocodeQueryBuilder->expects(static::once())
+        $geocodeQueryBuilder->expects(self::once())
             ->method('setComponents')
             ->with($components)
             ->willReturn($geocodeQueryBuilder);
 
-        $geocodeQueryBuilder->expects(static::once())
+        $geocodeQueryBuilder->expects(self::once())
             ->method('setLanguage')
             ->with($language)
             ->willReturn($geocodeQueryBuilder);
 
-        $geocodeQueryBuilder->expects(static::once())
+        $geocodeQueryBuilder->expects(self::once())
             ->method('setRegion')
             ->with($region)
             ->willReturn($geocodeQueryBuilder);
 
-        $geocodeQueryBuilder->expects(static::once())
+        $geocodeQueryBuilder->expects(self::once())
             ->method('setBounds')
             ->with($bounds)
             ->willReturn($geocodeQueryBuilder);
 
-        $this->geocodeParser->expects(static::once())
+        $this->geocodeParser->expects(self::once())
             ->method('apply')
             ->with($geocodeQueryBuilder)
             ->willReturn($geocodeResults);
@@ -98,6 +98,6 @@ class GoogleServiceTest extends TestCase
 
         $expected = $geocodeResults;
 
-        static::assertSame($expected, $actual);
+        self::assertSame($expected, $actual);
     }
 }

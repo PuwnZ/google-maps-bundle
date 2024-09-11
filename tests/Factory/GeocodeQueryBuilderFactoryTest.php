@@ -30,7 +30,7 @@ class GeocodeQueryBuilderFactoryTest extends TestCase
         $queryBuilder = $this->service->build();
         $queryBuilder2 = $this->service->build();
 
-        static::assertEquals($queryBuilder2, $queryBuilder);
-        static::assertNotSame($queryBuilder2, $queryBuilder);
+        self::assertEquals($queryBuilder2, $queryBuilder);
+        self::assertNotSame($queryBuilder2, $queryBuilder);
     }
 }
