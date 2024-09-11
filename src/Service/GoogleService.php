@@ -35,7 +35,7 @@ class GoogleService
         array $components = [],
         ?string $language = null,
         ?string $region = null,
-        array $bounds = []
+        array $bounds = [],
     ): array {
         $geocodeQueryBuilder = $this->geocodeQueryBuilderFactory->build();
         $geocodeQueryBuilder->setAddress($address);
